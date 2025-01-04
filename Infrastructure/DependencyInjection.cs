@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Domain.Interfaces;
+using Domain.Repositories;
 
 namespace Infrastructure
 {
@@ -14,6 +15,7 @@ namespace Infrastructure
             options.UseSqlServer(connectionString));
 
             services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
+            services.AddScoped<IFrizerRepository, FrizerRepository>();
 
             return services;
         }
