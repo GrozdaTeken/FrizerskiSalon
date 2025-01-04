@@ -1,6 +1,10 @@
 ﻿using Application.Services.Interfaces;
 using Domain.Entities;
 using Domain.Repositories;
+using Application.DTOs.Create;
+using Application.DTOs.Returnable;
+using Application.Extensions;
+using System;
 
 namespace Application.Services.Implementations
 {
@@ -13,9 +17,25 @@ namespace Application.Services.Implementations
             _frizerRepository = frizerRepository;
         }
 
-        public async Task<Frizer> AddFrizerAsync(Frizer frizer)
+        public async Task<FrizerReturnable> AddFrizerAsync(FrizerCreate frizerCreate)
         {
-            return await _frizerRepository.AddFrizerAsync(frizer);
+
+            Frizer frizer = frizerCreate.ConvertToEntity();
+
+            try
+            {
+                await _frizerRepository.AddFrizerAsync(frizer);
+
+                FrizerReturnable frizerReturnable = frizer.ConvertToReturnable();
+
+                return frizerReturnable;
+
+            }
+            catch (Exception ex) 
+            {
+                throw new ApplicationException("Failed to add frizer.", ex);
+            }
+
         }
 
         public async Task<bool> DeleteFrizerAsync(int id)
@@ -23,19 +43,36 @@ namespace Application.Services.Implementations
             return await _frizerRepository.DeleteFrizerAsync(id);
         }
 
-        public async Task<Frizer?> GetFrizerByIdAsync(int id)
+        public async Task<FrizerReturnable?> GetFrizerByIdAsync(int id)
         {
-            return await _frizerRepository.GetFrizerByIdAsync(id);
+            var frizer = await _frizerRepository.GetFrizerByIdAsync(id);
+
+            return frizer.ConvertToReturnable() ?? null;
         }
 
-        public async Task<IEnumerable<Frizer>> GetAllFrizersAsync()
+        public async Task<IEnumerable<FrizerReturnable>> GetAllFrizersAsync()
         {
-            return await _frizerRepository.GetAllFrizersAsync();
+            var frizers = await _frizerRepository.GetAllFrizersAsync();
+            return frizers.Select(frizer => frizer.ConvertToReturnable());
         }
 
-        public async Task UpdateFrizerAsync(Frizer frizer)
+        public async Task<FrizerReturnable> UpdateFrizerAsync(int friId, FrizerCreate frizerCreate)
         {
-            await _frizerRepository.UpdateFrizerAsync(frizer);
+
+            var existingFrizer = await _frizerRepository.GetFrizerByIdAsync(friId);
+
+            if (existingFrizer == null)
+            {
+                throw new Exception("Frizer doesn't exist.");
+            }
+
+            existingFrizer.Ime = frizerCreate.Ime;
+            existingFrizer.Prezime = frizerCreate.Prezime;
+            existingFrizer.Telefon = frizerCreate.Telefon;
+
+            await _frizerRepository.UpdateFrizerAsync(existingFrizer);
+
+            return existingFrizer.ConvertToReturnable();
         }
     }
 }

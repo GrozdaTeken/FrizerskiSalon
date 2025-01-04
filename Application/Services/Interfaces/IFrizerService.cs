@@ -1,13 +1,16 @@
 ﻿using Domain.Entities;
+using Application.DTOs.Returnable;
+using Application.DTOs.Create;
+
 
 namespace Application.Services.Interfaces
 {
     public interface IFrizerService
     {
-        Task<Frizer> AddFrizerAsync(Frizer frizer);
+        Task<FrizerReturnable> AddFrizerAsync(FrizerCreate frizer);
         Task<bool> DeleteFrizerAsync(int id);
-        Task<Frizer?> GetFrizerByIdAsync(int id);
-        Task<IEnumerable<Frizer>> GetAllFrizersAsync();
-        Task UpdateFrizerAsync(Frizer frizer);
+        Task<FrizerReturnable?> GetFrizerByIdAsync(int id);
+        Task<IEnumerable<FrizerReturnable>> GetAllFrizersAsync();
+        Task<FrizerReturnable> UpdateFrizerAsync(int friId, FrizerCreate frizer);
     }
 }

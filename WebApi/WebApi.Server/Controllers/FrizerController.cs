@@ -1,3 +1,4 @@
+using Application.DTOs.Create;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -31,17 +32,16 @@ namespace WebApi.Controllers
         }
 
         [HttpPost("AddFrizer")]
-        public async Task<IActionResult> AddFrizer(Frizer frizer)
+        public async Task<IActionResult> AddFrizer(FrizerCreate frizerCreate)
         {
-            var createdFrizer = await _frizerService.AddFrizerAsync(frizer);
+            var createdFrizer = await _frizerService.AddFrizerAsync(frizerCreate);
             return CreatedAtAction(nameof(GetFrizerById), new { id = createdFrizer.Id }, createdFrizer);
         }
 
         [HttpPut("UpdateFrizer/{id}")]
-        public async Task<IActionResult> UpdateFrizer(int id, Frizer frizer)
+        public async Task<IActionResult> UpdateFrizer(int id, FrizerCreate frizerCreate)
         {
-            if (id != frizer.Id) return BadRequest();
-            await _frizerService.UpdateFrizerAsync(frizer);
+            await _frizerService.UpdateFrizerAsync(id, frizerCreate);
             return NoContent();
         }
 

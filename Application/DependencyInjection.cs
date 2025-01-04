@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Application.Services.Implementations;
+using Application.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
 {
@@ -10,6 +12,7 @@ namespace Application
 
             // Primer registracije servisa:
             // services.AddScoped<IRezervacijaService, RezervacijaService>();
+            services.AddScoped<IFrizerService, FrizerService>();
 
             return services;
         }
