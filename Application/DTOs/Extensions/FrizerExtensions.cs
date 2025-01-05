@@ -12,7 +12,8 @@ namespace Application.Extensions
             {
                 Ime = dto.Ime,
                 Prezime = dto.Prezime,
-                Telefon = dto.Telefon
+                Telefon = dto.Telefon,
+                Rezervacije = dto.Rezervacije
             };
         }
 
@@ -23,7 +24,8 @@ namespace Application.Extensions
                 Id = frizer.Id,
                 Ime = frizer.Ime,
                 Prezime = frizer.Prezime,
-                Telefon = frizer.Telefon
+                Telefon = frizer.Telefon,
+                Rezervacije = frizer.Rezervacije
             };
         }
     }

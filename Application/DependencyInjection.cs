@@ -13,6 +13,7 @@ namespace Application
             // Primer registracije servisa:
             // services.AddScoped<IRezervacijaService, RezervacijaService>();
             services.AddScoped<IFrizerService, FrizerService>();
+            services.AddScoped<IBlacklistService, BlacklistService>();
 
             return services;
         }

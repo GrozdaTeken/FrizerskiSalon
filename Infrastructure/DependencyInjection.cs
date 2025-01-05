@@ -16,6 +16,7 @@ namespace Infrastructure
 
             services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
             services.AddScoped<IFrizerRepository, FrizerRepository>();
+            services.AddScoped<IBlacklistRepository, BlacklistRepository>();
 
             return services;
         }
