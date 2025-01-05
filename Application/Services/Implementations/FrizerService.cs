@@ -38,12 +38,12 @@ namespace Application.Services.Implementations
 
         }
 
-        public async Task<bool> DeleteFrizerAsync(int id)
+        public async Task<bool> DeleteFrizerAsync(Guid id)
         {
             return await _frizerRepository.DeleteFrizerAsync(id);
         }
 
-        public async Task<FrizerReturnable?> GetFrizerByIdAsync(int id)
+        public async Task<FrizerReturnable?> GetFrizerByIdAsync(Guid id)
         {
             var frizer = await _frizerRepository.GetFrizerByIdAsync(id);
 
@@ -56,7 +56,7 @@ namespace Application.Services.Implementations
             return frizers.Select(frizer => frizer.ConvertToReturnable());
         }
 
-        public async Task<FrizerReturnable> UpdateFrizerAsync(int friId, FrizerCreate frizerCreate)
+        public async Task<FrizerReturnable> UpdateFrizerAsync(Guid friId, FrizerCreate frizerCreate)
         {
 
             var existingFrizer = await _frizerRepository.GetFrizerByIdAsync(friId);

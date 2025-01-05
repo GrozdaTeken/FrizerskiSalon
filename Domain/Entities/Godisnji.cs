@@ -2,9 +2,9 @@
 {
     public class Godisnji
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int FriId { get; set; }
+        public Guid FriId { get; set; }
         public Frizer Frizer { get; set; }
 
         public DateTime GodisnjiOd { get; set; }

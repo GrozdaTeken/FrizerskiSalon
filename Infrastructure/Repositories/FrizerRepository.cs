@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
             return frizer;
         }
 
-        public async Task<bool> DeleteFrizerAsync(int id)
+        public async Task<bool> DeleteFrizerAsync(Guid id)
         {
             var frizer = await GetFrizerByIdAsync(id);
             if (frizer == null) return false;
@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<Frizer?> GetFrizerByIdAsync(int id)
+        public async Task<Frizer?> GetFrizerByIdAsync(Guid id)
         {
             return await _context.Frizeri.FirstOrDefaultAsync(f => f.Id == id);
         }

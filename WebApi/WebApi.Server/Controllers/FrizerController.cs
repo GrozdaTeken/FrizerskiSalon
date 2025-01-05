@@ -1,6 +1,5 @@
 using Application.DTOs.Create;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -24,7 +23,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("GetFrizer/{id}")]
-        public async Task<IActionResult> GetFrizerById(int id)
+        public async Task<IActionResult> GetFrizerById(Guid id)
         {
             var frizer = await _frizerService.GetFrizerByIdAsync(id);
             if (frizer == null) return NotFound();
@@ -39,14 +38,14 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("UpdateFrizer/{id}")]
-        public async Task<IActionResult> UpdateFrizer(int id, FrizerCreate frizerCreate)
+        public async Task<IActionResult> UpdateFrizer(Guid id, FrizerCreate frizerCreate)
         {
             await _frizerService.UpdateFrizerAsync(id, frizerCreate);
             return NoContent();
         }
 
         [HttpDelete("DeleteFrizer/{id}")]
-        public async Task<IActionResult> DeleteFrizer(int id)
+        public async Task<IActionResult> DeleteFrizer(Guid id)
         {
             var success = await _frizerService.DeleteFrizerAsync(id);
             if (!success) return NotFound();

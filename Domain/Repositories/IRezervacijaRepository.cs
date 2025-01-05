@@ -5,9 +5,9 @@ namespace Domain.Interfaces
     public interface IRezervacijaRepository
     {
         Task<IEnumerable<Rezervacija>> GetAllAsync();
-        Task<Rezervacija> GetByIdAsync(int rezId);
+        Task<Rezervacija> GetByIdAsync(Guid rezId);
         Task AddAsync(Rezervacija rezervacija);
         Task UpdateAsync(Rezervacija rezervacija);
-        Task DeleteAsync(int rezId);
+        Task DeleteAsync(Guid rezId);
     }
 }

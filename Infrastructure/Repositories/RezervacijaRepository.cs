@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
             return await _context.Rezervacije.ToListAsync();
         }
 
-        public async Task<Rezervacija> GetByIdAsync(int rezId)
+        public async Task<Rezervacija> GetByIdAsync(Guid rezId)
         {
             return await _context.Rezervacije.FindAsync(rezId);
         }
@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int rezId)
+        public async Task DeleteAsync(Guid rezId)
         {
             var rezervacija = await GetByIdAsync(rezId);
             if (rezervacija != null)

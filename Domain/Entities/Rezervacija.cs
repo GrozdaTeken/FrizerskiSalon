@@ -2,8 +2,8 @@
 {
     public class Rezervacija
     {
-        public int Id { get; set; }
-        public int FriId { get; set; }
+        public Guid Id { get; set; }
+        public Guid FriId { get; set; }
         public Frizer Frizer { get; set; }
         public DateTime Termin { get; set; }
         public string Ime { get; set; }
