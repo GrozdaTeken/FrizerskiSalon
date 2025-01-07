@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
-using Domain.Interfaces;
 using Domain.Repositories;
 
 namespace Infrastructure
@@ -17,6 +16,9 @@ namespace Infrastructure
             services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
             services.AddScoped<IFrizerRepository, FrizerRepository>();
             services.AddScoped<IBlacklistRepository, BlacklistRepository>();
+            services.AddScoped<IGodisnjiRepository, GodisnjiRepository>();
+            services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
+            services.AddScoped<IMessageQueueRepository, MessageQueueRepository>();
 
             return services;
         }

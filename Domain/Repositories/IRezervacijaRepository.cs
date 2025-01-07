@@ -1,13 +1,14 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Interfaces
+namespace Domain.Repositories
 {
     public interface IRezervacijaRepository
     {
-        Task<IEnumerable<Rezervacija>> GetAllAsync();
-        Task<Rezervacija> GetByIdAsync(Guid rezId);
         Task AddAsync(Rezervacija rezervacija);
+        Task<bool> DeleteAsync(Guid id);
+        Task<Rezervacija?> GetByIdAsync(Guid id);
+        Task<IEnumerable<Rezervacija>> GetAllAsync();
         Task UpdateAsync(Rezervacija rezervacija);
-        Task DeleteAsync(Guid rezId);
+        Task<IEnumerable<Rezervacija>> GetByFriIdAsync(Guid friId);
     }
 }

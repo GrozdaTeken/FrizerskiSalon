@@ -14,5 +14,9 @@
             Razlog = razlog;
             CreatedAt = createdAt;
         }
+
+        public BlacklistCreate()
+        {
+        }
     }
 }

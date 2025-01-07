@@ -14,6 +14,9 @@ namespace Application
             // services.AddScoped<IRezervacijaService, RezervacijaService>();
             services.AddScoped<IFrizerService, FrizerService>();
             services.AddScoped<IBlacklistService, BlacklistService>();
+            services.AddScoped<IGodisnjiService, GodisnjiService>();
+            services.AddScoped<IRezervacijaService, RezervacijaService>();
+            services.AddScoped<IMessageQueueService, MessageQueueService>();
 
             return services;
         }

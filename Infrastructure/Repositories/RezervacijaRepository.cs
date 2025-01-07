@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
+using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,25 +9,34 @@ namespace Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public RezervacijaRepository(ApplicationDbContext context)
+        public RezervacijaRepository (ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public async Task AddAsync(Rezervacija rezervacija)
+        {
+            _context.Rezervacije.Add(rezervacija);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var rezervacija = await GetByIdAsync(id);
+            if (rezervacija == null) return false;
+
+            _context.Rezervacije.Remove(rezervacija);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<Rezervacija?> GetByIdAsync(Guid id)
+        {
+            return await _context.Rezervacije.FirstOrDefaultAsync(r => r.Id == id);
         }
 
         public async Task<IEnumerable<Rezervacija>> GetAllAsync()
         {
             return await _context.Rezervacije.ToListAsync();
-        }
-
-        public async Task<Rezervacija> GetByIdAsync(Guid rezId)
-        {
-            return await _context.Rezervacije.FindAsync(rezId);
-        }
-
-        public async Task AddAsync(Rezervacija rezervacija)
-        {
-            await _context.Rezervacije.AddAsync(rezervacija);
-            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Rezervacija rezervacija)
@@ -36,14 +45,9 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid rezId)
+        public async Task<IEnumerable<Rezervacija>> GetByFriIdAsync(Guid friId)
         {
-            var rezervacija = await GetByIdAsync(rezId);
-            if (rezervacija != null)
-            {
-                _context.Rezervacije.Remove(rezervacija);
-                await _context.SaveChangesAsync();
-            }
+            return await _context.Rezervacije.Where(r => r.FriId == friId).ToListAsync();
         }
     }
 }
