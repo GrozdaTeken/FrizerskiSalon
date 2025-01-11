@@ -17,9 +17,7 @@ namespace Application
             services.AddScoped<IGodisnjiService, GodisnjiService>();
             services.AddScoped<IRezervacijaService, RezervacijaService>();
             services.AddScoped<IMessageQueueService, MessageQueueService>();
-
             services.AddScoped<ISmenaService, SmenaService>();
-
 
             return services;
         }

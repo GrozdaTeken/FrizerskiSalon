@@ -19,9 +19,7 @@ namespace Infrastructure
             services.AddScoped<IGodisnjiRepository, GodisnjiRepository>();
             services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
             services.AddScoped<IMessageQueueRepository, MessageQueueRepository>();
-
             services.AddScoped<ISmenaRepository, SmenaRepository>();
-
 
             return services;
         }
