@@ -8,7 +8,7 @@ namespace Infrastructure.Data
         public ApplicationDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=DENALI\\SQLEXPRESS;Initial Catalog=FrizerskiSalonDb;Integrated Security=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-M9ME2OD\\SQLEXPRESS;Initial Catalog=FrizerskiSalonDb;Integrated Security=True;TrustServerCertificate=True");
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }

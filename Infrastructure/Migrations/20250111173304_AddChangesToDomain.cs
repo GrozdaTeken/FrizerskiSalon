@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class AddChangesToDomain : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,9 +67,9 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FriId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Termin = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Ime = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    Mail = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    Telefon = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
+                    Ime = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
+                    Telefon = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true)
                 },
                 constraints: table =>
                 {

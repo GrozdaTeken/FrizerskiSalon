@@ -11,5 +11,7 @@ namespace Application.Services.Interfaces
         Task<IEnumerable<SmenaReturnable>> GetAllSmeneAsync();
         Task<SmenaReturnable> UpdateSmenaAsync(Guid id, SmenaCreate smenaCreate);
         Task<IEnumerable<SmenaReturnable>> GetSmeneByFriIdAsync(Guid friId);
+        Task SetShiftAsync(Guid friId, DateTime dateFrom, DateTime dateTo, TimeSpan shiftFrom, TimeSpan shiftTo);
+
     }
 }

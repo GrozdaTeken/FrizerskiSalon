@@ -49,5 +49,11 @@ namespace Infrastructure.Repositories
         {
             return await _context.Smene.Where(s => s.FriId == friId).ToListAsync();
         }
+        public async Task SetShiftsAsync(IEnumerable<Smena> shifts)
+        {
+            await _context.Smene.AddRangeAsync(shifts);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

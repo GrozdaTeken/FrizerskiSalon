@@ -2,6 +2,7 @@
 using Application.DTOs.Extensions;
 using Application.DTOs.Returnables;
 using Application.Services.Interfaces;
+using Domain.Entities;
 using Domain.Repositories;
 
 namespace Application.Services.Implementations
@@ -60,6 +61,34 @@ namespace Application.Services.Implementations
         {
             var smene = await _smenaRepository.GetByFriIdAsync(friId);
             return smene.Select(s => s.ConvertToReturnable());
+        }
+
+        public async Task SetShiftAsync(Guid friId, DateTime dateFrom, DateTime dateTo, TimeSpan shiftFrom, TimeSpan shiftTo)
+        {
+            if (dateFrom > dateTo)
+            {
+                throw new ArgumentException("DateFrom cannot be later than DateTo.");
+            }
+
+            if (shiftFrom >= shiftTo)
+            {
+                throw new ArgumentException("ShiftFrom must be earlier than ShiftTo.");
+            }
+
+            var shifts = new List<Smena>();
+
+            for (var date = dateFrom.Date; date <= dateTo.Date; date = date.AddDays(1))
+            {
+                shifts.Add(new Smena
+                {
+                    Id = Guid.NewGuid(),
+                    FriId = friId,
+                    Pocetak = date.Add(shiftFrom),
+                    Kraj = date.Add(shiftTo)
+                });
+            }
+
+            await _smenaRepository.SetShiftsAsync(shifts);
         }
     }
 }

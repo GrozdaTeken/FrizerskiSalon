@@ -12,8 +12,7 @@ namespace Application.Extensions
             {
                 Ime = dto.Ime,
                 Prezime = dto.Prezime,
-                Telefon = dto.Telefon,
-                Rezervacije = dto.Rezervacije
+                Telefon = dto.Telefon
             };
         }
 

@@ -102,16 +102,13 @@ namespace Infrastructure.Data
                 .IsRequired();
 
                 entity.Property(e => e.Ime)
-                .HasMaxLength(45)
-                .IsRequired();
+                .HasMaxLength(45);
 
                 entity.Property(e => e.Mail)
-                .HasMaxLength(45)
-                .IsRequired();
+                .HasMaxLength(45);
 
                 entity.Property(e => e.Telefon)
-                .HasMaxLength(45)
-                .IsRequired();
+                .HasMaxLength(45);
             });
 
             // Konfiguracija za entitet Smena

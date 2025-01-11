@@ -49,5 +49,28 @@ namespace Infrastructure.Repositories
         {
             return await _context.Rezervacije.Where(r => r.FriId == friId).ToListAsync();
         }
+
+        public async Task<bool> DeleteAllAsync()
+        {
+            var rezervacije = await _context.Rezervacije.ToListAsync();
+
+            if (!rezervacije.Any())
+            {
+                return true;
+            }
+
+            _context.Rezervacije.RemoveRange(rezervacije);
+
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<IEnumerable<Rezervacija>> GetReservationsByDateAsync(DateTime date)
+        {
+            return await _context.Rezervacije
+                .Include(r => r.Frizer)
+                .Where(r => r.Termin.Date == date.Date)
+                .ToListAsync();
+        }
+
     }
 }

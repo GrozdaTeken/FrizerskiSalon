@@ -58,5 +58,12 @@ namespace WebApi.Controllers
             var smene = await _smenaService.GetSmeneByFriIdAsync(friId);
             return Ok(smene);
         }
+
+        [HttpPost("SetShift")]
+        public async Task<IActionResult> SetShift(Guid friId, DateTime dateFrom, DateTime dateTo, TimeSpan shiftFrom, TimeSpan shiftTo)
+        {
+            await _smenaService.SetShiftAsync(friId, dateFrom, dateTo, shiftFrom, shiftTo);
+            return Ok("Shift(s) added successfully.");
+        }
     }
 }

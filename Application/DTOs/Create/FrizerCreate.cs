@@ -7,14 +7,12 @@ namespace Application.DTOs.Create
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Telefon { get; set; }
-        public ICollection<Rezervacija> Rezervacije { get; set; }
 
-        public FrizerCreate(string ime, string prezime, string telefon, ICollection<Rezervacija> rezervacije)
+        public FrizerCreate(string ime, string prezime, string telefon)
         {
             Ime = ime;
             Prezime = prezime;
             Telefon = telefon;
-            Rezervacije = rezervacije;
         }
 
         public FrizerCreate()

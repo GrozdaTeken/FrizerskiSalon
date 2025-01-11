@@ -1,4 +1,5 @@
 using Application.DTOs.Create;
+using Application.DTOs.Update;
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,9 +39,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("UpdateRezervacija/{id:guid}")]
-        public async Task<IActionResult> Update(Guid id, RezervacijaCreate rezervacijaCreate)
+        public async Task<IActionResult> Update(Guid id, RezervacijaUpdate rezervacijaUpdate)
         {
-            await _rezervacijaService.UpdateRezervacijaAsync(id, rezervacijaCreate);
+            await _rezervacijaService.UpdateRezervacijaAsync(id, rezervacijaUpdate);
             return NoContent();
         }
 
@@ -58,5 +59,25 @@ namespace WebApi.Controllers
             var rezervacije = await _rezervacijaService.GetByFriIdAsync(friId);
             return Ok(rezervacije);
         }
+
+        [HttpPost("RestartReservation")]
+        public async Task<IActionResult> RestartReservation()
+        {
+            var success = await _rezervacijaService.RestartReservationAsync();
+            if (!success)
+            {
+                return StatusCode(500, "Error during reservation restart.");
+            }
+
+            return Ok("Reservations have been successfully restarted.");
+        }
+
+        [HttpGet("ShowReservations/{date}")]
+        public async Task<IActionResult> ShowReservations(DateTime date)
+        {
+            var reservations = await _rezervacijaService.GetReservationsByDateAsync(date);
+            return Ok(reservations);
+        }
+
     }
 }

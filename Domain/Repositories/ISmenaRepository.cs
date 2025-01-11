@@ -10,5 +10,7 @@ namespace Domain.Repositories
         Task<IEnumerable<Smena>> GetAllAsync();
         Task UpdateAsync(Smena smena);
         Task<IEnumerable<Smena>> GetByFriIdAsync(Guid friId);
+        Task SetShiftsAsync(IEnumerable<Smena> shifts);
+
     }
 }

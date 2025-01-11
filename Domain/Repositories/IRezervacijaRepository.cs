@@ -10,5 +10,8 @@ namespace Domain.Repositories
         Task<IEnumerable<Rezervacija>> GetAllAsync();
         Task UpdateAsync(Rezervacija rezervacija);
         Task<IEnumerable<Rezervacija>> GetByFriIdAsync(Guid friId);
+        Task<bool> DeleteAllAsync();
+        Task<IEnumerable<Rezervacija>> GetReservationsByDateAsync(DateTime date);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Create;
 using Application.DTOs.Returnables;
+using Application.DTOs.Update;
 
 namespace Application.Services.Interfaces
 {
@@ -9,7 +10,10 @@ namespace Application.Services.Interfaces
         Task<bool> DeleteRezervacijaAsync(Guid id);
         Task<RezervacijaReturnable?> GetRezervacijaByIdAsync(Guid id);
         Task<IEnumerable<RezervacijaReturnable>> GetAllRezervacijeAsync();
-        Task<RezervacijaReturnable> UpdateRezervacijaAsync(Guid id, RezervacijaCreate rezervacijaCreate);
+        Task<RezervacijaReturnable> UpdateRezervacijaAsync(Guid id, RezervacijaUpdate rezervacijaUpdate);
         Task<IEnumerable<RezervacijaReturnable>> GetByFriIdAsync(Guid friId);
+        Task<bool> RestartReservationAsync();
+        Task<IEnumerable<ReservationWithStatus>> GetReservationsByDateAsync(DateTime date);
+
     }
 }
