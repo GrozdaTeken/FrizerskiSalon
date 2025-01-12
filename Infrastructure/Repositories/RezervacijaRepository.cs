@@ -39,10 +39,11 @@ namespace Infrastructure.Repositories
             return await _context.Rezervacije.ToListAsync();
         }
 
-        public async Task UpdateAsync(Rezervacija rezervacija)
+        public async Task<bool> UpdateAsync(Rezervacija rezervacija)
         {
             _context.Rezervacije.Update(rezervacija);
-            await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
         }
 
         public async Task<IEnumerable<Rezervacija>> GetByFriIdAsync(Guid friId)
@@ -70,6 +71,21 @@ namespace Infrastructure.Repositories
                 .Include(r => r.Frizer)
                 .Where(r => r.Termin.Date == date.Date)
                 .ToListAsync();
+        }
+        public async Task<bool> CancelReservationAsync(Guid rezId)
+        {
+            var reservation = await _context.Rezervacije.FirstOrDefaultAsync(r => r.Id == rezId);
+
+            if (reservation == null)
+            {
+                return false;
+            }
+
+            reservation.Ime = null;
+            reservation.Mail = null;
+            reservation.Telefon = null;
+
+            return await UpdateAsync(reservation);
         }
 
     }

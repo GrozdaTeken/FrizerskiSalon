@@ -116,5 +116,10 @@ namespace Application.Services.Implementations
                 Occupied = !(string.IsNullOrEmpty(r.Ime) && string.IsNullOrEmpty(r.Mail) && string.IsNullOrEmpty(r.Telefon))
             });
         }
+
+        public async Task<bool> CancelReservationAsync(Guid rezId)
+        {
+            return await _rezervacijaRepository.CancelReservationAsync(rezId);
+        }
     }
 }
