@@ -1,18 +1,13 @@
-.navbarB {
+.home-page {
     min-height: 100vh;
     background-image: url('/assets/pics/barberSaloon.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center; /* Ensure the image is centered */
-    opacity: 0.8;
-
-    display: flex; /*Enables flexbox on this container*/
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
+    background-position: relative; 
+    opacity: 0.92;
 }
 
-h1 {
-    font-size: larger;
-    color: white; /* Ensure the text is visible on the background */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+.title{
+    background-color: rgba(0, 0, 0, .4);
 }
+
