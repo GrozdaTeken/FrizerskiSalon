@@ -13,6 +13,7 @@ import { PreviousWorkComponent } from './layout/previous-work/previous-work.comp
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { PricelistComponent } from './layout/pricelist/pricelist.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PricelistComponent } from './layout/pricelist/pricelist.component';
     NavbarBelowComponent,
     AboutusHomeComponent,
     PreviousWorkComponent,
-    PricelistComponent
+    PricelistComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
