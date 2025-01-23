@@ -10,7 +10,6 @@
                 <img [src]="item.itemImageSrc"
                     [ngStyle]="{ width: !fullscreen ? '100%' : '', display: !fullscreen ? 'block' : '' }" />
             </ng-template>
-
             <ng-template pTemplate="footer" let-item>
                 <div class="custom-galleria-footer">
                     <span *ngIf="images" class="title-container">

@@ -12,6 +12,7 @@ import { PreviousWorkComponent } from './layout/previous-work/previous-work.comp
 
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
+import { PricelistComponent } from './layout/pricelist/pricelist.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { GalleriaModule } from 'primeng/galleria';
     NavbarComponent,
     NavbarBelowComponent,
     AboutusHomeComponent,
-    PreviousWorkComponent
+    PreviousWorkComponent,
+    PricelistComponent
   ],
   imports: [
     BrowserModule,
