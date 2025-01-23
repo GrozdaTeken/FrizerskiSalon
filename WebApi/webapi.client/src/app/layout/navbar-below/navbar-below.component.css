@@ -3,11 +3,20 @@
     background-image: url('/assets/pics/barberSaloon.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: relative; 
-    opacity: 0.92;
+    background-position: center;
 }
 
-.title{
-    background-color: rgba(0, 0, 0, .4);
+.title {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
+.navbar .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.navbar .nav-link:hover {
+    color: #28a745; /* Bootstrap success green */
+}
