@@ -1,23 +1,26 @@
-<div class="container-fluid">
-    <div class="d-flex justify-content-center">
+<div class="container">
+    <div class="d-flex justify-content-center my-3">
         <h1>Mesto da prikazete Vaše radove</h1>
     </div>
-    <div class="col-12 col-lg-3 order-0 order-lg-0 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle1.png" alt="hairstyle1" class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-3 order-1 order-lg-1 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle2.png" alt="hairstyle2" class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-3 order-2 order-lg-2 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle3.png" alt="hairstyle3" class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-3 order-3 order-lg-3 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle1.png" alt="hairstyle1" class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-3 order-4 order-lg-4 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle2.png" alt="hairstyle2" class="img-fluid">
-    </div>
-    <div class="col-12 col-lg-3 order-5 order-lg-5 d-flex justify-content-center">
-        <img src="/assets/pics/hairstyle3.png" alt="hairstyle3" class="img-fluid">
+    <div class="d-flex justify-content-center">
+        <p-galleria #galleria [value]="images" [(activeIndex)]="activeIndex" [numVisible]="5" [showThumbnails]="false"
+            [showItemNavigators]="true" [showItemNavigatorsOnHover]="true" [circular]="true" [autoPlay]="true"
+            [transitionInterval]="3000" [containerStyle]="{ 'width': '100%' }" [containerClass]="galleriaClass()">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.itemImageSrc"
+                    [ngStyle]="{ width: !fullscreen ? '100%' : '', display: !fullscreen ? 'block' : '' }" />
+            </ng-template>
+
+            <ng-template pTemplate="footer" let-item>
+                <div class="custom-galleria-footer">
+                    <span *ngIf="images" class="title-container">
+                        <span>{{ activeIndex + 1 }}/{{ images.length }}</span>
+                        <span class="title">{{ images[activeIndex].title }}</span>
+                        <span>{{ images[activeIndex].alt }}</span>
+                    </span>
+
+                </div>
+            </ng-template>
+        </p-galleria>
     </div>
 </div>

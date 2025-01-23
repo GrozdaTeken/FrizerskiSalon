@@ -11,6 +11,7 @@ import { AboutusHomeComponent } from './layout/aboutus-home/aboutus-home.compone
 import { PreviousWorkComponent } from './layout/previous-work/previous-work.component';
 
 import { ButtonModule } from 'primeng/button';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,12 @@ import { ButtonModule } from 'primeng/button';
     PreviousWorkComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,
-    AppRoutingModule,ButtonModule,BrowserAnimationsModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ButtonModule,
+    BrowserAnimationsModule,
+    GalleriaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
