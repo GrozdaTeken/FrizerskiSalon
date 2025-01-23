@@ -13,20 +13,20 @@ export class PreviousWorkComponent {
     {
       itemImageSrc: '/assets/pics/hairstyle1.png',
       thumbnailImageSrc: '/assets/pics/hairstyle1.png',
-      title: 'Image 1 Title',
-      alt: 'Image 1 Description'
+      title: 'Primer slike broj I',
+      alt: 'Opis prve slike'
     },
     {
       itemImageSrc: '/assets/pics/hairstyle2.png',
       thumbnailImageSrc: '/assets/pics/hairstyle2.png',
-      title: 'Image 2 Title',
-      alt: 'Image 2 Description'
+      title: 'Primer  slike broj II',
+      alt: 'Opis druge slike'
     },
     {
       itemImageSrc: '/assets/pics/hairstyle3.png',
       thumbnailImageSrc: '/assets/pics/hairstyle3.png',
-      title: 'Image 3 Title',
-      alt: 'Image 3 Description'
+      title: 'Primer slike broj III',
+      alt: 'Opis treće slike'
     },
     // Add more images here
   ];
