@@ -13,6 +13,7 @@ namespace Infrastructure.Data
         public DbSet<Blacklist> Blacklists { get; set; }
         public DbSet<Smena> Smene { get; set; }
         public DbSet<Godisnji> Godisnji { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
