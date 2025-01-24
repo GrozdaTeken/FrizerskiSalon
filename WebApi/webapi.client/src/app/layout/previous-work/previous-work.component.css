@@ -1,0 +1,19 @@
+.custom-galleria-footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background with slight transparency */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to separate footer */
+    font-size: 0.9rem; /* Slightly smaller font for elegance */
+}
+
+.custom-galleria-footer .fw-bold {
+    font-size: 1rem;
+    color: #28a745; /* Matching the success green color */
+}
+
+.custom-galleria-footer button {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.custom-galleria-footer button:hover {
+    transform: scale(1.1); /* Slight zoom effect for interactivity */
+}

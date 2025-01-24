@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="d-flex justify-content-center my-3">
+        <h1>Mesto da prikazete Vaše radove</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p-galleria #galleria [value]="images" [(activeIndex)]="activeIndex" [numVisible]="5" [showThumbnails]="false"
+            [showItemNavigators]="true" [showItemNavigatorsOnHover]="true" [circular]="true" [autoPlay]="true"
+            [transitionInterval]="3000" [containerStyle]="{ 'width': '100%' }" [containerClass]="galleriaClass()">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.itemImageSrc"
+                    [ngStyle]="{ width: !fullscreen ? '100%' : '', display: !fullscreen ? 'block' : '' }" />
+            </ng-template>
+            <ng-template pTemplate="footer" let-item>
+                <div
+                    class="custom-galleria-footer d-flex align-items-center justify-content-between p-3 bg-black text-white">
+                    <div>
+                        <span>{{ activeIndex + 1 }}/{{ images.length }}</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="fw-bold">{{ images[activeIndex]?.title }}</span>
+                        <br />
+                        <small class="color-white">{{ images[activeIndex]?.alt }}</small>
+                    </div>
+                    <div>
+                        <button pButton type="button" icon="pi pi-expand"
+                            class="p-button-rounded p-button-success p-button-sm" (click)="toggleFullScreen()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+        </p-galleria>
+    </div>
+</div>
