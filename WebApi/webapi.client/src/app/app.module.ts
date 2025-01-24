@@ -14,6 +14,11 @@ import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { PricelistComponent } from './layout/pricelist/pricelist.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { HomePageComponent } from './layout/home-page/home-page.component';
+import { AboutUsPageComponent } from './layout/about-us-page/about-us-page.component';
+import { GalleriaPageComponent } from './layout/galleria-page/galleria-page.component';
+import { ContactPageComponent } from './layout/contact-page/contact-page.component';
+import { ReservationPageComponent } from './layout/reservation-page/reservation-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { FooterComponent } from './layout/footer/footer.component';
     AboutusHomeComponent,
     PreviousWorkComponent,
     PricelistComponent,
-    FooterComponent
+    FooterComponent,
+    HomePageComponent,
+    AboutUsPageComponent,
+    GalleriaPageComponent,
+    ContactPageComponent,
+    ReservationPageComponent
   ],
   imports: [
     BrowserModule,
