@@ -1,4 +1,5 @@
-﻿using Application.Services.Implementations;
+﻿using Application.Services;
+using Application.Services.Implementations;
 using Application.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,8 @@ namespace Application
             services.AddScoped<IRezervacijaService, RezervacijaService>();
             services.AddScoped<IMessageQueueService, MessageQueueService>();
             services.AddScoped<ISmenaService, SmenaService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEncryptionService, EncryptionService>();
 
             return services;
         }

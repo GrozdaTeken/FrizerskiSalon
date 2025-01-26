@@ -53,28 +53,24 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<User>> GetAllUsersAsync(Guid? staId)
         {
             return await _context.Users
-                .Include(m => m.Role)
                 .ToListAsync();
         }
 
         public async Task<User> GetUserByIdAsync(Guid? id)
         {
             return await _context.Users
-                .Include(m => m.Role)
                 .FirstOrDefaultAsync(User => User.UserId == id);
         }
 
         public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
         {
             return await _context.Users
-                .Include(m => m.Role)
                 .FirstOrDefaultAsync(m => m.Email == email && m.Password == password);
         }
 
         public async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
         {
             return await _context.Users
-                .Include(m => m.Role)
                 .FirstOrDefaultAsync(m => m.Username == username && m.Password == password);
         }
 
@@ -93,7 +89,6 @@ namespace Infrastructure.Repositories
         public async Task<User> GetUserByEmailAsync(string email)
         {
             return await _context.Users
-                .Include(m => m.Role)
                 .FirstOrDefaultAsync(m => m.Email == email);
         }
     }

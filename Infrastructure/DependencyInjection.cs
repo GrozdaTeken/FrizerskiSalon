@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Domain.Repositories;
+using Domain.Repositories.Interfaces;
 
 namespace Infrastructure
 {
@@ -20,6 +21,7 @@ namespace Infrastructure
             services.AddScoped<IRezervacijaRepository, RezervacijaRepository>();
             services.AddScoped<IMessageQueueRepository, MessageQueueRepository>();
             services.AddScoped<ISmenaRepository, SmenaRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

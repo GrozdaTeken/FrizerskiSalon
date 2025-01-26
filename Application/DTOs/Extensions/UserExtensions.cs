@@ -10,7 +10,6 @@ namespace Application.Extensions
         {
             return new User
             {
-                UserId = dto.UserId ?? Guid.NewGuid(),
                 Username = dto.Username,
                 Email = dto.Email,
                 Role = dto.Role,

@@ -59,7 +59,7 @@ namespace Application.Services
 
         public async Task<UserReturnable> UpdateUserAsync(UserCreate UserCreate)
         {
-            var existingUser = await _userRepository.GetUserByIdAsync(UserCreate.UserId) ?? throw new Exception("User doesn't exist.");
+            var existingUser = await _userRepository.GetUserByEmailAsync(UserCreate.Email) ?? throw new Exception("User doesn't exist.");
             //var validationErrors = _UserValidator.Validate(UserCreate);
 
             //if (validationErrors != null && validationErrors.Any())
