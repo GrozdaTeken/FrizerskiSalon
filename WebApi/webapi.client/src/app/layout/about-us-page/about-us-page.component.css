@@ -1,0 +1,10 @@
+.card img {
+    object-fit: cover;
+    height: 300px; /* Ensures consistent image height */
+}
+.card-title {
+    color: #28a745; /* Match navbar green */
+}
+.card-text {
+    color: #555; /* Softer text color for description */
+}
