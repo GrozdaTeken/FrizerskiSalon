@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+interface Column {
+  field: string;
+  header: string;
+}
+
 @Component({
   selector: 'app-reservation-page',
   templateUrl: './reservation-page.component.html',
@@ -17,10 +22,41 @@ export class ReservationPageComponent {
   ];
   activeTab: string = this.tabs[0].title;
 
-  constructor() {}
+  reservations = [
+    {time:"10.00h",status:"Zauzeto",action:"Otkazi"},
+    {time:"10.15h",status:"Slobodno",action:"Zakazi"},
+    {time:"10.30h",status:"Zauzeto",action:"Otkazi"},
+  ];
+
+  cols!: Column[];
+
+  constructor() { }
 
   ngOnInit() {
     this.updateActiveTab(0); // Initialize with the first tab
+    // this.productService.getProductsMini().then((data) => {// OVO CE TREBATI KAD SE BUDE UBACIVALO IZ BAZE, ZA SAD SU SAMO DUMMY PRIMERI PRIKAZA
+    //   this.products = data;
+    // });
+
+    // this.cols = [
+    //   { field: 'code', header: 'Code' },
+    //   { field: 'name', header: 'Name' },
+    //   { field: 'category', header: 'Category' },
+    //   { field: 'quantity', header: 'Quantity' },
+    //   { field: 'inventoryStatus', header: 'Status' },
+    //   { field: 'rating', header: 'Rating' }
+    // ];
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+      case 'Slobodno':
+        return 'success';
+      case 'Zauzeto':
+        return 'danger';
+      default:
+        return 'warning';
+    }
   }
 
   updateActiveTab(index: number) {

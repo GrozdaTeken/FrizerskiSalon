@@ -17,6 +17,10 @@ import { DividerModule } from 'primeng/divider';
 import { ListboxModule } from 'primeng/listbox';
 import { GalleriaModule } from 'primeng/galleria';
 import { TabViewModule } from 'primeng/tabview';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
+import { CommonModule } from '@angular/common';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarModule } from 'primeng/avatar';
 import { CalendarModule } from 'primeng/calendar';
@@ -42,7 +46,7 @@ import { ReservationPageComponent } from './layout/reservation-page/reservation-
     AboutUsPageComponent,
     GalleriaPageComponent,
     ContactPageComponent,
-    ReservationPageComponent,
+    ReservationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,11 @@ import { ReservationPageComponent } from './layout/reservation-page/reservation-
     BadgeModule,
     TabViewModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    TableModule,
+    TagModule,
+    RatingModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

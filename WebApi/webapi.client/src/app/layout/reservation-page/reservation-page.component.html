@@ -1,37 +1,51 @@
 <div class="container">
     <h1 class="text-center my-3">Rezervišite svoje šišanje</h1>
-    <p-timeline [value]="events" layout="horizontal" align="bottom">
-      <ng-template pTemplate="content" let-event>
-        {{ event }}
-      </ng-template>
-    </p-timeline>
-  
-    <div class="d-flex justify-content-center flex-column align-items-center my-3">
-      <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
-      <p-calendar
-        [(ngModel)]="date2"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-        [showIcon]="true"
-        inputId="icondisplay"
-        (onSelect)="updateDate()"
-      ></p-calendar>
-    </div>
-  
-    <p-tabView styleClass="tabview-custom" (onChange)="updateActiveTab($event.index)">
-      <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
-        <ng-template pTemplate="header">
-          <div class="flex align-items-center gap-2">
-            <p-avatar
-              image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-              shape="circle"
-            ></p-avatar>
-            <span class="font-bold white-space-nowrap m-0">{{ tab.title }}</span>
-            <p-badge [value]="tab.value"></p-badge>
-          </div>
+    <p-timeline [value]="events" layout="vertical" align="left">
+        <ng-template pTemplate="content" let-event>
+            {{ event }}
         </ng-template>
-        <p>{{ tab.content }}</p>
-      </p-tabPanel>
+    </p-timeline>
+
+    <div class="d-flex justify-content-center flex-column align-items-center my-3">
+        <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
+        <p-calendar [(ngModel)]="date2" [minDate]="minDate" [maxDate]="maxDate" [showIcon]="true" inputId="icondisplay"
+            (onSelect)="updateDate()"></p-calendar>
+    </div>
+
+    <p-tabView styleClass="tabview-custom" (onChange)="updateActiveTab($event.index)">
+        <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2">
+                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                        shape="circle"></p-avatar>
+                    <span class="font-bold white-space-nowrap m-0">{{ tab.title }}</span>
+                    <p-badge [value]="tab.value"></p-badge>
+                </div>
+            </ng-template>
+            <p-table [value]="reservations" responsiveLayout="stack" [breakpoint]="'960px'"
+                [tableStyle]="{'min-width': '50rem'}">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>Vreme</th>
+                        <th>Status</th>
+                        <th>Akcija</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-reservation let-columns="columns">
+                    <tr>
+                        <td>
+                            <span class="p-column-title"></span>{{reservation.time}}
+                        </td>
+                        <td>
+                            <p-tag [value]="reservation.status"
+                                [severity]="getSeverity(reservation.status)" />
+                        </td>
+                        <td>
+                            <span class="p-column-title"></span>{{reservation.action}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-tabPanel>
     </p-tabView>
-  </div>
-  
+</div>
