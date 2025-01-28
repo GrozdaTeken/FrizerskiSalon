@@ -1,1 +1,37 @@
-<p>reservation-page works!</p>
+<div class="container">
+    <h1 class="text-center my-3">Rezervišite svoje šišanje</h1>
+    <p-timeline [value]="events" layout="horizontal" align="bottom">
+      <ng-template pTemplate="content" let-event>
+        {{ event }}
+      </ng-template>
+    </p-timeline>
+  
+    <div class="d-flex justify-content-center flex-column align-items-center my-3">
+      <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
+      <p-calendar
+        [(ngModel)]="date2"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [showIcon]="true"
+        inputId="icondisplay"
+        (onSelect)="updateDate()"
+      ></p-calendar>
+    </div>
+  
+    <p-tabView styleClass="tabview-custom" (onChange)="updateActiveTab($event.index)">
+      <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+        <ng-template pTemplate="header">
+          <div class="flex align-items-center gap-2">
+            <p-avatar
+              image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+              shape="circle"
+            ></p-avatar>
+            <span class="font-bold white-space-nowrap m-0">{{ tab.title }}</span>
+            <p-badge [value]="tab.value"></p-badge>
+          </div>
+        </ng-template>
+        <p>{{ tab.content }}</p>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+  
