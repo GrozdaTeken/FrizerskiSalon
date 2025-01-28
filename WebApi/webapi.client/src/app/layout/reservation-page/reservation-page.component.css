@@ -1,4 +1,7 @@
 ::ng-deep .tabview-custom .p-tabview-nav-link {
     text-decoration: none;
-  }
-  
+}
+
+:host ::ng-deep .row-accessories {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}

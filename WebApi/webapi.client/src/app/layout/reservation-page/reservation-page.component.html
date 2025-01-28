@@ -1,10 +1,11 @@
 <div class="container">
     <h1 class="text-center my-3">Rezervišite svoje šišanje</h1>
-    <p-timeline [value]="events" layout="vertical" align="left">
+    <p-timeline [value]="events" [layout]="isLargeScreen ? 'horizontal' : 'vertical'" align="left">
         <ng-template pTemplate="content" let-event>
             {{ event }}
         </ng-template>
     </p-timeline>
+    <p class="text-muted text-center">*Ovde će biti prikazano šta ste izabrali</p>
 
     <div class="d-flex justify-content-center flex-column align-items-center my-3">
         <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
@@ -32,16 +33,15 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-reservation let-columns="columns">
-                    <tr>
+                    <tr [ngClass]="{'row-accessories': reservation.status === 'Zauzeto'}">
                         <td>
                             <span class="p-column-title"></span>{{reservation.time}}
                         </td>
                         <td>
-                            <p-tag [value]="reservation.status"
-                                [severity]="getSeverity(reservation.status)" />
+                            <p-tag [value]="reservation.status" [severity]="getSeverity(reservation.status)" />
                         </td>
                         <td>
-                            <span class="p-column-title"></span>{{reservation.action}}
+                            <span class="p-column-title"></span><p-button [icon]="getIcon(reservation.status)" [rounded]="true" [severity]="getButtonSeverity(reservation.status)"></p-button>
                         </td>
                     </tr>
                 </ng-template>

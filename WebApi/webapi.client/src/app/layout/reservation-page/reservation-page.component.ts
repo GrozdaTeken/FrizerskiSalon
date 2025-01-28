@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 interface Column {
   field: string;
@@ -11,6 +11,7 @@ interface Column {
   styleUrls: ['./reservation-page.component.css'],
 })
 export class ReservationPageComponent {
+
   events: string[] = ["Datum:", "Izabrani frizer:", "Termin:"];
   date2: Date | undefined;
   minDate: Date = new Date(); // Example: Set today as the minimum date
@@ -23,12 +24,32 @@ export class ReservationPageComponent {
   activeTab: string = this.tabs[0].title;
 
   reservations = [
-    {time:"10.00h",status:"Zauzeto",action:"Otkazi"},
-    {time:"10.15h",status:"Slobodno",action:"Zakazi"},
-    {time:"10.30h",status:"Zauzeto",action:"Otkazi"},
+    { time: "10.00h", status: "Zauzeto", action: "Otkazi" },
+    { time: "10.15h", status: "Slobodno", action: "Zakazi" },
+    { time: "10.30h", status: "Zauzeto", action: "Otkazi" },
+    { time: "10.45h", status: "Zauzeto", action: "Otkazi" },
+    { time: "11.00h", status: "Slobodno", action: "Zakazi" },
+    { time: "11.15h", status: "Zauzeto", action: "Otkazi" },
+    { time: "11.30h", status: "Zauzeto", action: "Otkazi" },
+    { time: "11.45h", status: "Slobodno", action: "Zakazi" },
+    { time: "12.00h", status: "Zauzeto", action: "Otkazi" },
+    { time: "12.15h", status: "Zauzeto", action: "Otkazi" },
+    { time: "12.30h", status: "Slobodno", action: "Zakazi" },
+    { time: "12.45h", status: "Zauzeto", action: "Otkazi" },
+    { time: "13.00h", status: "Zauzeto", action: "Otkazi" },
+    { time: "13.15h", status: "Zauzeto", action: "Otkazi" },
+    { time: "13.30h", status: "Slobodno", action: "Zakazi" },
+    { time: "13.45h", status: "Zauzeto", action: "Otkazi" },
+    { time: "14.00h", status: "Zauzeto", action: "Otkazi" },
+    { time: "14.15h", status: "Zauzeto", action: "Otkazi" },
+    { time: "14.30h", status: "Slobodno", action: "Zakazi" },
+    { time: "14.45h", status: "Zauzeto", action: "Otkazi" },
+    { time: "15.00h", status: "Zauzeto", action: "Otkazi" },
   ];
 
   cols!: Column[];
+
+  isLargeScreen: boolean = true;
 
   constructor() { }
 
@@ -48,14 +69,40 @@ export class ReservationPageComponent {
     // ];
   }
 
+  @HostListener('window:resize', ['$event'])
+  updateScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 768; // Example: Large screens are 768px or more
+  }
+
   getSeverity(status: string) {
+    switch (status) {
+      case 'Slobodno':
+        return 'success';
+      case 'Zauzeto':
+        return 'contrast';
+      default:
+        return 'warning';
+    }
+  }
+
+  getButtonSeverity(status: string) {
     switch (status) {
       case 'Slobodno':
         return 'success';
       case 'Zauzeto':
         return 'danger';
       default:
-        return 'warning';
+        return 'info';
+    }
+  }
+  getIcon(status: string) {
+    switch (status) {
+      case 'Slobodno':
+        return 'pi pi-check';
+      case 'Zauzeto':
+        return 'pi pi-times';
+      default:
+        return 'ERROR';
     }
   }
 
