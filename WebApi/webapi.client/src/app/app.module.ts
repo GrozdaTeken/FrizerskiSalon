@@ -11,7 +11,21 @@ import { AboutusHomeComponent } from './layout/aboutus-home/aboutus-home.compone
 import { PreviousWorkComponent } from './layout/previous-work/previous-work.component';
 
 import { ButtonModule } from 'primeng/button';
+import { TimelineModule } from 'primeng/timeline';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
+import { ListboxModule } from 'primeng/listbox';
 import { GalleriaModule } from 'primeng/galleria';
+import { TabViewModule } from 'primeng/tabview';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { RatingModule } from 'primeng/rating';
+import { CommonModule } from '@angular/common';
+import { BadgeModule } from 'primeng/badge';
+import { AvatarModule } from 'primeng/avatar';
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
 import { PricelistComponent } from './layout/pricelist/pricelist.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomePageComponent } from './layout/home-page/home-page.component';
@@ -41,7 +55,21 @@ import { ReservationPageComponent } from './layout/reservation-page/reservation-
     AppRoutingModule,
     ButtonModule,
     BrowserAnimationsModule,
-    GalleriaModule
+    GalleriaModule,
+    TimelineModule,
+    CardModule,
+    DividerModule,
+    ListboxModule,
+    AvatarModule,
+    BadgeModule,
+    TabViewModule,
+    CalendarModule,
+    FormsModule,
+    TableModule,
+    TagModule,
+    RatingModule,
+    CommonModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
