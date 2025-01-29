@@ -14,7 +14,24 @@ builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("De
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200")  // dozvoli frontend
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+                      });
+});
+
+
+
 var app = builder.Build();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

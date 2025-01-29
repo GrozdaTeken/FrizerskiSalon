@@ -13,35 +13,34 @@
             (onSelect)="updateDate()"></p-calendar>
     </div>
 
-    <p-tabView styleClass="tabview-custom" (onChange)="updateActiveTab($event.index)">
-        <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+    <p-tabView styleClass="tabview-custom" (onChange)="selectFrizer(frizers[$event.index].id)">
+        <p-tabPanel *ngFor="let frizer of frizers" [header]="frizer.ime + ' ' + frizer.prezime">
             <ng-template pTemplate="header">
                 <div class="flex align-items-center gap-2">
                     <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
                         shape="circle"></p-avatar>
-                    <span class="font-bold white-space-nowrap m-0">{{ tab.title }}</span>
-                    <p-badge [value]="tab.value"></p-badge>
+                    <span class="font-bold white-space-nowrap m-0">{{ frizer.ime }} {{ frizer.prezime }}</span>
                 </div>
             </ng-template>
             <p-table [value]="reservations" responsiveLayout="stack" [breakpoint]="'960px'"
                 [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
+                <ng-template pTemplate="header">
                     <tr>
                         <th>Vreme</th>
                         <th>Status</th>
                         <th>Akcija</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-reservation let-columns="columns">
+                <ng-template pTemplate="body" let-reservation>
                     <tr [ngClass]="{'row-accessories': reservation.status === 'Zauzeto'}">
-                        <td>
-                            <span class="p-column-title"></span>{{reservation.time}}
-                        </td>
+                        <td>{{ reservation.time }}</td>
                         <td>
                             <p-tag [value]="reservation.status" [severity]="getSeverity(reservation.status)" />
                         </td>
                         <td>
-                            <span class="p-column-title"></span><p-button [icon]="getIcon(reservation.status)" [rounded]="true" [severity]="getButtonSeverity(reservation.status)"></p-button>
+                            <p-button [icon]="getIcon(reservation.status)" [rounded]="true" 
+                                [severity]="getButtonSeverity(reservation.status)">
+                            </p-button>
                         </td>
                     </tr>
                 </ng-template>
