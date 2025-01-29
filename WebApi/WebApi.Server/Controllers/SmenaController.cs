@@ -1,11 +1,13 @@
 using Application.DTOs.Create;
 using Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class SmenaController : ControllerBase
     {
         private readonly ISmenaService _smenaService;
