@@ -17,6 +17,7 @@ import { DividerModule } from 'primeng/divider';
 import { ListboxModule } from 'primeng/listbox';
 import { GalleriaModule } from 'primeng/galleria';
 import { TabViewModule } from 'primeng/tabview';
+import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
@@ -67,7 +68,8 @@ import { ReservationPageComponent } from './layout/reservation-page/reservation-
     TableModule,
     TagModule,
     RatingModule,
-    CommonModule
+    CommonModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

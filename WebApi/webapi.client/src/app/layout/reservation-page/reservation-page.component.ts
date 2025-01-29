@@ -22,14 +22,22 @@ interface Reservation {
   styleUrls: ['./reservation-page.component.css'],
 })
 export class ReservationPageComponent implements OnInit {
+
   apiBaseUrl = 'http://localhost:5295/api';
+
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
   
   events: string[] = ["Datum:", "Izabrani frizer:", "Termin:"];
-  date2: Date | undefined;
+  chosenDate: Date | undefined;
   minDate: Date = new Date();
   maxDate: Date = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
   
   frizers: Frizer[] = [];
+  chosenFrizer: Frizer | undefined;
   activeFrizerId: string | null = null;
   reservations: { time: string; status: string }[] = [];
   
@@ -56,6 +64,7 @@ export class ReservationPageComponent implements OnInit {
     const selectedFrizer = this.frizers.find(frizer => frizer.id === friId);
     this.events[1] = `Izabrani frizer: ${selectedFrizer?.ime} ${selectedFrizer?.prezime}`;
     this.events = [...this.events];
+    this.chosenFrizer = selectedFrizer;
 
     this.getReservationsForFrizer(friId);
   }
@@ -76,8 +85,8 @@ export class ReservationPageComponent implements OnInit {
   }
 
   updateDate() {
-    if (this.date2) {
-      this.events[0] = `Datum: ${this.date2.toLocaleDateString('sr-RS')}`;
+    if (this.chosenDate) {
+      this.events[0] = `Datum: ${this.chosenDate.toLocaleDateString('sr-RS')}`;
       this.events = [...this.events];
     }
   }
@@ -85,6 +94,10 @@ export class ReservationPageComponent implements OnInit {
   getSeverity(status: string) {
     return status === "Slobodno" ? "success" : "contrast";
   }
+
+  getButtonDisabled(status: string){
+    return status === "Slobodno" ? "false" : "true";
+    }
 
   getButtonSeverity(status: string) {
     return status === "Slobodno" ? "success" : "danger";
