@@ -21,8 +21,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = "https://localhost:7019", // Postavi svoj issuer
-            ValidAudience = "https://localhost:7019", // Postavi svoj audience
+            ValidIssuer = "https://localhost:7019",
+            ValidAudience = "https://localhost:4200",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("zN1VqAdfu+MhP72dGR3KLrX/HKbIjTP9N8x+oFqW1Hg="))
         };
     });
@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:4200")  // dozvoli frontend
+                          policy.WithOrigins("http://localhost:4200")
                                 .AllowAnyMethod()
                                 .AllowAnyHeader();
                       });

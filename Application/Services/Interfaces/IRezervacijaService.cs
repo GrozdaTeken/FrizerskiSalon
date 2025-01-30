@@ -15,5 +15,7 @@ namespace Application.Services.Interfaces
         Task<bool> RestartReservationAsync();
         Task<IEnumerable<ReservationWithStatus>> GetReservationsByDateAsync(DateTime date);
         Task<bool> CancelReservationAsync(Guid rezId);
+
+        Task<IEnumerable<ReservationWithStatus>> GetReservationsByFriIdAndDate(Guid friId, DateTime date);
     }
 }

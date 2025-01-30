@@ -91,5 +91,12 @@ namespace WebApi.Controllers
 
             return Ok("Reservation successfully cancelled.");
         }
+
+        [HttpGet("ListReservationsByFriIdAndDate/{friId:guid}/{date}")]
+        public async Task<IActionResult> ListReservationsByFriIdAndDate(Guid friId, DateTime date)
+        {
+            var reservations = await _rezervacijaService.GetReservationsByFriIdAndDate(friId, date);
+            return Ok(reservations);
+        }
     }
 }

@@ -88,5 +88,13 @@ namespace Infrastructure.Repositories
             return await UpdateAsync(reservation);
         }
 
+        public async Task<IEnumerable<Rezervacija>> GetReservationsByFriIdAndDate(Guid friId, DateTime date)
+        {
+            return await _context.Rezervacije
+                .Include(r => r.Frizer)
+                .Where(r => r.Termin.Date == date.Date)
+                .Where(r => r.FriId == friId)
+                .ToListAsync();
+        }
     }
 }

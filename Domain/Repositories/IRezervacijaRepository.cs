@@ -13,5 +13,6 @@ namespace Domain.Repositories
         Task<bool> DeleteAllAsync();
         Task<IEnumerable<Rezervacija>> GetReservationsByDateAsync(DateTime date);
         Task<bool> CancelReservationAsync(Guid rezId);
+        Task<IEnumerable<Rezervacija>> GetReservationsByFriIdAndDate(Guid friId, DateTime date);
     }
 }

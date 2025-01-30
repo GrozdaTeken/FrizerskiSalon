@@ -121,5 +121,19 @@ namespace Application.Services.Implementations
         {
             return await _rezervacijaRepository.CancelReservationAsync(rezId);
         }
+
+        public async Task<IEnumerable<ReservationWithStatus>> GetReservationsByFriIdAndDate(Guid friId, DateTime date)
+        {
+            var reservations = await _rezervacijaRepository.GetReservationsByFriIdAndDate(friId, date);
+
+            return reservations.Select(r => new ReservationWithStatus
+            {
+                Id = r.Id,
+                FriId = r.FriId,
+                FrizerName = r.Frizer.Ime + " " + r.Frizer.Prezime,
+                Termin = r.Termin,
+                Occupied = !(string.IsNullOrEmpty(r.Ime) && string.IsNullOrEmpty(r.Mail) && string.IsNullOrEmpty(r.Telefon))
+            });
+        }
     }
 }
