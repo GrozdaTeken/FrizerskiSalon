@@ -64,7 +64,9 @@ namespace Application.Services.Implementations
         public async Task<IEnumerable<RezervacijaReturnable>> GetByFriIdAsync(Guid friId)
         {
             var rezervacije = await _rezervacijaRepository.GetByFriIdAsync(friId);
-            return rezervacije.Select(r => r.ConvertToReturnable());
+            return rezervacije
+                .OrderBy(r => r.Termin)
+                .Select(r => r.ConvertToReturnable());
         }
 
         public async Task<bool> RestartReservationAsync()
@@ -117,9 +119,9 @@ namespace Application.Services.Implementations
             });
         }
 
-        public async Task<bool> CancelReservationAsync(Guid rezId)
+        public async Task<bool> CancelReservationAsync(Guid rezId, string email)
         {
-            return await _rezervacijaRepository.CancelReservationAsync(rezId);
+            return await _rezervacijaRepository.CancelReservationAsync(rezId, email);
         }
 
         public async Task<IEnumerable<ReservationWithStatus>> GetReservationsByFriIdAndDate(Guid friId, DateTime date)

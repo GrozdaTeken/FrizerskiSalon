@@ -14,7 +14,7 @@ namespace Application.Services.Interfaces
         Task<IEnumerable<RezervacijaReturnable>> GetByFriIdAsync(Guid friId);
         Task<bool> RestartReservationAsync();
         Task<IEnumerable<ReservationWithStatus>> GetReservationsByDateAsync(DateTime date);
-        Task<bool> CancelReservationAsync(Guid rezId);
+        Task<bool> CancelReservationAsync(Guid rezId, string email);
 
         Task<IEnumerable<ReservationWithStatus>> GetReservationsByFriIdAndDate(Guid friId, DateTime date);
     }

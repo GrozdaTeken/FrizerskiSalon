@@ -79,10 +79,10 @@ namespace WebApi.Controllers
             return Ok(reservations);
         }
 
-        [HttpPut("CancelReservation/{rezId:guid}")]
-        public async Task<IActionResult> CancelReservation(Guid rezId)
+        [HttpPut("CancelReservation/{rezId:guid}/{email}")]
+        public async Task<IActionResult> CancelReservation(Guid rezId, string email)
         {
-            var success = await _rezervacijaService.CancelReservationAsync(rezId);
+            var success = await _rezervacijaService.CancelReservationAsync(rezId, email);
 
             if (!success)
             {

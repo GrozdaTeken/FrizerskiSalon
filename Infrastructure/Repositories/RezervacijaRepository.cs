@@ -72,11 +72,11 @@ namespace Infrastructure.Repositories
                 .Where(r => r.Termin.Date == date.Date)
                 .ToListAsync();
         }
-        public async Task<bool> CancelReservationAsync(Guid rezId)
+        public async Task<bool> CancelReservationAsync(Guid rezId, string email)
         {
             var reservation = await _context.Rezervacije.FirstOrDefaultAsync(r => r.Id == rezId);
 
-            if (reservation == null)
+            if (reservation == null || reservation.Mail?.ToLower() != email.ToLower())
             {
                 return false;
             }
