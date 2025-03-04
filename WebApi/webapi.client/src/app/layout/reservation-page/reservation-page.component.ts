@@ -23,13 +23,9 @@ interface Reservation {
 })
 export class ReservationPageComponent implements OnInit {
 
-  apiBaseUrl = 'http://localhost:5295/api';
+  apiBaseUrl = 'https://localhost:5295/api';
 
   visible: boolean = false;
-
-    showDialog() {
-        this.visible = true;
-    }
   
   events: string[] = ["Datum:", "Izabrani frizer:", "Termin:"];
   chosenDate: Date | undefined;
@@ -46,37 +42,6 @@ export class ReservationPageComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getFrizers();
-    this.updateScreenSize();
-  }
-
-  getFrizers() {
-    this.http.get<Frizer[]>(`${this.apiBaseUrl}/Frizer/AllFrizers`).subscribe((data) => {
-      this.frizers = data;
-      if (this.frizers.length > 0) {
-        this.selectFrizer(this.frizers[0].id); // Select first frizer by default
-      }
-    });
-  }
-
-  selectFrizer(friId: string) {
-    this.activeFrizerId = friId;
-    const selectedFrizer = this.frizers.find(frizer => frizer.id === friId);
-    this.events[1] = `Izabrani frizer: ${selectedFrizer?.ime} ${selectedFrizer?.prezime}`;
-    this.events = [...this.events];
-    this.chosenFrizer = selectedFrizer;
-
-    this.getReservationsForFrizer(friId);
-  }
-
-  getReservationsForFrizer(friId: string) {
-    this.http.get<Reservation[]>(`${this.apiBaseUrl}/Rezervacija/RezervacijeZaFrizera/${friId}`)
-      .subscribe((data) => {
-        this.reservations = data.map(res => ({
-          time: new Date(res.termin).toLocaleTimeString('sr-RS', { hour: '2-digit', minute: '2-digit' }),
-          status: res.mail || res.telefon ? "Zauzeto" : "Slobodno",
-        }));
-      });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -89,21 +54,5 @@ export class ReservationPageComponent implements OnInit {
       this.events[0] = `Datum: ${this.chosenDate.toLocaleDateString('sr-RS')}`;
       this.events = [...this.events];
     }
-  }
-
-  getSeverity(status: string) {
-    return status === "Slobodno" ? "success" : "contrast";
-  }
-
-  getButtonDisabled(status: string){
-    return status === "Slobodno" ? "false" : "true";
-    }
-
-  getButtonSeverity(status: string) {
-    return status === "Slobodno" ? "success" : "danger";
-  }
-
-  getIcon(status: string) {
-    return status === "Slobodno" ? "pi pi-check" : "pi pi-times";
   }
 }

@@ -33,6 +33,8 @@ import { AboutUsPageComponent } from './layout/about-us-page/about-us-page.compo
 import { GalleriaPageComponent } from './layout/galleria-page/galleria-page.component';
 import { ContactPageComponent } from './layout/contact-page/contact-page.component';
 import { ReservationPageComponent } from './layout/reservation-page/reservation-page.component';
+import { ReservationTableComponent } from './reservation-table/reservation-table.component';
+import { DialogReservationConformationComponent } from './dialog-reservation-conformation/dialog-reservation-conformation.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ReservationPageComponent } from './layout/reservation-page/reservation-
     AboutUsPageComponent,
     GalleriaPageComponent,
     ContactPageComponent,
-    ReservationPageComponent
+    ReservationPageComponent,
+    ReservationTableComponent,
+    DialogReservationConformationComponent
   ],
   imports: [
     BrowserModule,
