@@ -23,7 +23,7 @@ interface Reservation {
 })
 export class ReservationPageComponent implements OnInit {
 
-  apiBaseUrl = 'https://localhost:7019/api';
+  apiBaseUrl = 'http://localhost:5295/api';
 
   visible: boolean = false;
 

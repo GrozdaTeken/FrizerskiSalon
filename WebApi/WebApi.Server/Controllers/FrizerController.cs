@@ -18,6 +18,7 @@ namespace WebApi.Controllers
         [HttpGet("AllFrizers")]
         public async Task<IActionResult> GetAllFrizers()
         {
+            Console.WriteLine("Uslo ovde");
             var frizers = await _frizerService.GetAllFrizersAsync();
             return Ok(frizers);
         }
