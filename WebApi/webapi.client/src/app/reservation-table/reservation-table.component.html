@@ -1,40 +1,46 @@
-<p-tabView styleClass="tabview-custom" (onChange)="selectFrizer(frizers[$event.index].id)">
-    <p-tabPanel *ngFor="let frizer of frizers" [header]="frizer.ime + ' ' + frizer.prezime">
+<div class="d-flex justify-content-center">
+    <p-tabView styleClass="tabview-custom" (onChange)="selectFrizer(frizers[$event.index].id)">
+        <p-tabPanel *ngFor="let frizer of frizers" [header]="frizer.ime + ' ' + frizer.prezime">
+            <ng-template pTemplate="header">
+                <div class="d-flex align-items-center gap-2">
+                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                        shape="circle"></p-avatar>
+                    <span class="font-weight-bold text-nowrap m-0">{{ frizer.ime }} {{ frizer.prezime }}</span>
+                </div>
+            </ng-template>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+<div class="p-3">
+    <p-table [value]="reservations" responsiveLayout="stack" [breakpoint]="'960px'" [tableStyle]="{'width': '100%'}"
+        styleClass="custom-table">
         <ng-template pTemplate="header">
-            <div class="d-flex align-items-center gap-2">
-                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-                    shape="circle"></p-avatar>
-                <span class="font-weight-bold text-nowrap m-0">{{ frizer.ime }} {{ frizer.prezime }}</span>
-            </div>
+            <tr>
+                <th class="text-nowrap text-center">🕒 Termin</th>
+                <th class="text-nowrap text-center">📌 Status</th>
+                <th class="text-nowrap text-center">⚡ Akcija</th>
+            </tr>
         </ng-template>
-        <div class="p-3">
-            <p-table [value]="reservations" responsiveLayout="stack" [breakpoint]="'960px'"
-                [tableStyle]="{'width': '100%'}">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th class="text-nowrap">Vreme</th>
-                        <th class="text-nowrap">Status</th>
-                        <th class="text-nowrap">Akcija</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-reservation>
-                    <tr [ngClass]="{'table-danger': reservation.status === 'Zauzeto'}">
-                        <td class="text-nowrap">{{ reservation.time }}</td>
-                        <td class="text-nowrap">
-                            <p-tag [value]="reservation.status" [severity]="getSeverity(reservation.status)" />
-                        </td>
-                        <td class="text-nowrap">
-                            <p-button [icon]="getIcon(reservation.status)" [rounded]="true"
-                                [severity]="getButtonSeverity(reservation.status)"
-                                [disabled]="getButtonDisabled(reservation.status)" (onClick)="showDialog()">
-                            </p-button>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-    </p-tabPanel>
-</p-tabView>
+        <ng-template pTemplate="body" let-reservation>
+            <tr [ngClass]="{'table-danger': reservation.status === 'Zauzeto'}">
+                <td class="text-center">
+                    <i class="pi pi-clock"></i> {{ reservation.time }}
+                </td>
+                <td class="text-center">
+                    <p-tag [value]="reservation.status" [severity]="getSeverity(reservation.status)" />
+                </td>
+                <td class="text-center">
+                    <p-button [icon]="getIcon(reservation.status)" [rounded]="true"
+                        [severity]="getButtonSeverity(reservation.status)"
+                        [disabled]="getButtonDisabled(reservation.status)" (onClick)="showDialog()">
+                    </p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
 
 <p-dialog header="Detalji Rezervacije" [(visible)]="visible" [modal]="true" [style]="{width: '50vw'}"
     [draggable]="false" [resizable]="false">
