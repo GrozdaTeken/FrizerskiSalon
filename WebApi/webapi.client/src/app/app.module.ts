@@ -35,6 +35,7 @@ import { ContactPageComponent } from './layout/contact-page/contact-page.compone
 import { ReservationPageComponent } from './layout/reservation-page/reservation-page.component';
 import { ReservationTableComponent } from './reservation-table/reservation-table.component';
 import { DialogReservationConformationComponent } from './dialog-reservation-conformation/dialog-reservation-conformation.component';
+import { AdminPanelPageComponent } from './admin-panel-page/admin-panel-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DialogReservationConformationComponent } from './dialog-reservation-con
     ContactPageComponent,
     ReservationPageComponent,
     ReservationTableComponent,
-    DialogReservationConformationComponent
+    DialogReservationConformationComponent,
+    AdminPanelPageComponent
   ],
   imports: [
     BrowserModule,

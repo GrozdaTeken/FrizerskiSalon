@@ -5,6 +5,7 @@ import { AboutUsPageComponent } from './layout/about-us-page/about-us-page.compo
 import { GalleriaPageComponent } from './layout/galleria-page/galleria-page.component';
 import { ContactPageComponent } from './layout/contact-page/contact-page.component';
 import { ReservationPageComponent } from './layout/reservation-page/reservation-page.component';
+import { AdminPanelPageComponent } from './admin-panel-page/admin-panel-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'galleria', component: GalleriaPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'reservation', component: ReservationPageComponent },
+  { path: 'admin-panel' , component: AdminPanelPageComponent}
 ];
 
 @NgModule({
