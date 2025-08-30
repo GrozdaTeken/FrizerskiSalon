@@ -1,1 +1,71 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background: #111 !important; /* tamnija nijansa crne */
+  padding: 0.8rem 1rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #28a745 !important;
+  letter-spacing: 1px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover {
+  color: #20c997 !important;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0.4rem;
+  color: #ddd !important;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #28a745 !important;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  color: #fff !important;
+  font-weight: 600;
+  border-bottom: 2px solid #28a745;
+  padding-bottom: 2px;
+}
+
+.btn-success {
+  background-color: #28a745 !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn-success:hover {
+  background-color: #218838 !important;
+  transform: scale(1.05);
+}
+
+.nav-link.active {
+  color: #28a745 !important;
+  font-weight: 600;
+  border-bottom: 2px solid #28a745;
+}
+
+.booking .display-6 { letter-spacing: .3px; }
+
+=======
 @import "primeicons/primeicons.css";
+>>>>>>> dbedbc97b9a2a096ebf236ed72a770837898b491
+=======
+@import "primeicons/primeicons.css";
+>>>>>>> dbedbc97b9a2a096ebf236ed72a770837898b491

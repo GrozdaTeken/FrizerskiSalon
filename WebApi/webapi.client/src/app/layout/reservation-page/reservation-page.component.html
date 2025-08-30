@@ -1,18 +1,159 @@
 <div class="container">
-    <h1 class="text-center my-3">Rezervišite svoje šišanje</h1>
-    <p-timeline [value]="events" [layout]="isLargeScreen ? 'horizontal' : 'vertical'" align="left">
-        <ng-template pTemplate="content" let-event>
-            {{ event }}
-        </ng-template>
-    </p-timeline>
-    <p class="text-muted text-center">*Ovde će biti prikazano šta ste izabrali</p>
-
-    <div class="d-flex justify-content-center flex-column align-items-center my-3">
-        <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
-        <p-calendar [(ngModel)]="chosenDate" [minDate]="minDate" [maxDate]="maxDate" [showIcon]="true" inputId="icondisplay"
-            (onSelect)="updateDate()"></p-calendar>
+  <section class="booking container-lg py-4">
+    <div class="text-center mb-4">
+      <h1 class="display-6 fw-bold mb-1">Rezervišite svoje šišanje</h1>
+      <p class="text-muted mb-0">Izaberite datum, frizera i termin koji vam odgovara.</p>
     </div>
+  </section>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <!-- timeline kompaktniji -->
+  <p-timeline
+    [value]="events"
+    [layout]="isLargeScreen ? 'horizontal' : 'vertical'"
+    align="left"
+    styleClass="booking-timeline"
+  >
+    <ng-template pTemplate="content" let-event>
+      {{ event }}
+    </ng-template>
+  </p-timeline>
+
+  <p class="text-muted text-center small mb-4">
+    *Ovde će biti prikazano šta ste izabrali
+  </p>
+
+  <!-- datum centriran -->
+  <div class="d-flex justify-content-center flex-column align-items-center my-3">
+    <label for="icondisplay" class="font-bold mb-2">Izaberite datum:</label>
+    <p-calendar
+      [(ngModel)]="chosenDate"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [showIcon]="true"
+      inputId="icondisplay"
+      (onSelect)="updateDate()"
+      styleClass="calendar-compact"
+    ></p-calendar>
+  </div>
+
+  <!-- frizeri kao lepe pill kartice -->
+  <p-tabView
+    styleClass="tabview-custom barber-tabs"
+    (onChange)="selectFrizer(frizers[$event.index].id)"
+  >
+    <p-tabPanel *ngFor="let frizer of frizers" [header]="frizer.ime + ' ' + frizer.prezime">
+      <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+          <p-avatar
+            image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+            shape="circle"
+          ></p-avatar>
+          <span class="font-bold white-space-nowrap m-0">
+            {{ frizer.ime }} {{ frizer.prezime }}
+          </span>
+        </div>
+      </ng-template>
+
+      <!-- tabela termina: sticky header, skrol, lep button -->
+      <p-table
+        [value]="reservations"
+        responsiveLayout="stack"
+        [breakpoint]="'960px'"
+        [scrollable]="true"
+        scrollHeight="60vh"
+        styleClass="slots-table"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Vreme</th>
+            <th>Status</th>
+            <th class="text-end">Akcija</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-reservation>
+          <tr [ngClass]="{ 'row-busy': reservation.status === 'Zauzeto' }">
+            <td class="fw-medium">{{ reservation.time }}</td>
+            <td>
+              <p-tag
+                [value]="reservation.status"
+                [severity]="getSeverity(reservation.status)"
+              />
+            </td>
+            <td class="text-end">
+              <p-button
+                [icon]="getIcon(reservation.status)"
+                [rounded]="true"
+                [raised]="true"
+                [severity]="getButtonSeverity(reservation.status)"
+                [disabled]="getButtonDisabled(reservation.status)"
+                (onClick)="showDialog()"
+                styleClass="action-btn"
+                label="Rezerviši"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabPanel>
+  </p-tabView>
+
+  <!-- MODAL: čist header, form-floating osećaj, Success dugme -->
+  <p-dialog
+    [(visible)]="visible"
+    [modal]="true"
+    [closable]="true"
+    [dismissableMask]="true"
+    [breakpoints]="{'960px':'28rem','640px':'95vw'}"
+    [style]="{ width: '28rem' }"
+    styleClass="booking-dialog"
+    >
+  <!-- Header -->
+    <ng-template pTemplate="header">
+    <div class="dlg-head">
+        <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+        shape="circle"
+        ></p-avatar>
+        <div>
+        <div class="dlg-title">{{ chosenFrizer?.ime }} {{ chosenFrizer?.prezime }}</div>
+        <div class="dlg-subtitle">{{ chosenDate | date:'EEE, d. MMM y, HH:mm' }} – {{ chosenFrizer?.ime }}</div>
+        </div>
+    </div>
+    </ng-template>
+
+  <!-- Body -->
+    <form class="dlg-form" (ngSubmit)="visible=false">
+    <span class="p-float-label mb-3">
+        <input pInputText id="username" [(ngModel)]="formUsername" name="username" placeholder=" " autocomplete="off" />
+        <label for="username">Korisničko ime</label>
+    </span>
+
+    <span class="p-float-label">
+        <input pInputText id="email" type="email" [(ngModel)]="formEmail" name="email" placeholder=" " autocomplete="off" />
+        <label for="email">Email</label>
+    </span>
+    </form>
+
+
+  <!-- Footer -->
+    <ng-template pTemplate="footer">
+    <div class="dlg-footer">
+        <p-button label="Otkaži" [text]="true" severity="secondary" (onClick)="visible=false"></p-button>
+        <p-button label="Sačuvaj" severity="success" (onClick)="visible=false"></p-button>
+    </div>
+    </ng-template>
+</p-dialog>
+
+=======
     <app-reservation-table></app-reservation-table>
     <app-dialog-reservation-conformation></app-dialog-reservation-conformation>
+>>>>>>> dbedbc97b9a2a096ebf236ed72a770837898b491
+=======
+    <app-reservation-table></app-reservation-table>
+    <app-dialog-reservation-conformation></app-dialog-reservation-conformation>
+>>>>>>> dbedbc97b9a2a096ebf236ed72a770837898b491
 </div>

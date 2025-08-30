@@ -1,7 +1,64 @@
-::ng-deep .tabview-custom .p-tabview-nav-link {
-    text-decoration: none;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Lokalno (bez ng-deep) */
+.booking .display-6 { letter-spacing: .3px; }
+
+/* ===================== PrimeNG: Timeline ===================== */
+:host ::ng-deep .booking-timeline .p-timeline-event-content { font-weight: 500; }
+:host ::ng-deep .booking-timeline.p-timeline-horizontal .p-timeline-event-opposite { display: none; }
+
+/* ===================== Calendar kompaktan ===================== */
+:host ::ng-deep .calendar-compact .p-inputtext { padding: .55rem .75rem; }
+
+/* ===================== Tabovi (frizeri) – pills ===================== */
+:host ::ng-deep .barber-tabs .p-tabview-nav {
+  gap: .5rem; border: none; margin-bottom: 1rem;
+}
+:host ::ng-deep .barber-tabs .p-tabview-nav li .p-tabview-nav-link {
+  border: 0; background: #f3f5f7; color: #222; border-radius: 999px;
+  padding: .5rem .9rem;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  text-decoration: none !important;  /* skini podvlačenje */
+  font-weight: 500;
+}
+:host ::ng-deep .barber-tabs .p-tabview-nav li .p-tabview-title {
+  text-decoration: none !important;  /* fallback ako tema podvlači */
+}
+:host ::ng-deep .barber-tabs .p-tabview-nav li .p-tabview-nav-link:hover { background: #e9ecef; }
+:host ::ng-deep .barber-tabs .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: #28a745; color: #fff !important;
 }
 
-:host ::ng-deep .row-accessories {
-    background-color: rgba(0, 0, 0, 0.15) !important;
+/* ===================== Tabela termina ===================== */
+:host ::ng-deep .slots-table .p-datatable-wrapper { border-radius: 12px; }
+:host ::ng-deep .slots-table .p-datatable-thead > tr > th {
+  position: sticky; top: 0; z-index: 1;
+  background: #f8f9fa; font-weight: 600;
 }
+:host ::ng-deep .slots-table .p-datatable-tbody > tr > td { padding: .75rem 1rem; }
+:host ::ng-deep .slots-table .p-datatable-tbody > tr.row-busy { opacity: .75; }
+
+/* ===================== Tag (badge) ===================== */
+:host ::ng-deep .p-tag {
+  padding: .35rem .6rem; border-radius: 999px; font-weight: 600;
+}
+
+/* ===================== Dugme "Rezerviši" ===================== */
+:host ::ng-deep .action-btn .p-button {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+  text-decoration: none !important; /* bez podvlačenja */
+}
+:host ::ng-deep .action-btn .p-button .p-button-label {
+  text-decoration: none !important; /* fallback */
+}
+:host ::ng-deep .action-btn.p-button-success {
+  box-shadow: 0 4px 10px rgba(40,167,69,.25);
+}
+
+/* ===================== Modal ===================== */
+:host ::ng-deep .booking-dialog .p-dialog-content { padding-top: .5rem; }
+:host ::ng-deep .booking-dialog .p-dialog-header { padding-bottom: .25rem; }
+:host ::ng-deep .booking-dialog .p-avatar { width: 32px; height: 32px; }
+:host ::ng-deep .booking-dialog .p-inputtext { padding: .7rem .8rem; }
+
